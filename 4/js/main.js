@@ -58,10 +58,6 @@ const addPhoto = () =>({
   comments: Array.from(getRandomInteger(0 , COMMENTS_MAX), addComments)
 });
 
-const getPhoto = () => {
-  const photo = Array.from({length: COUNT_PHOTO}, addPhoto);
-  return photo;
-};
+const getPhoto = () => Array.from({length: COUNT_PHOTO}, addPhoto);
 
-getPhoto();
-
+export {getPhoto};
