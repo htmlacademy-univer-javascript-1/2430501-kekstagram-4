@@ -59,4 +59,5 @@ const addPhoto = () =>({
 });
 
 const getPhoto = () => Array.from({length: COUNT_PHOTO}, addPhoto);
+
 export {getPhoto};
