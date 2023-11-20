@@ -4,4 +4,15 @@ const getRandomInteger = (a, b) => {
   const result = Math.random() * (upper - lower + 1) + lower;
   return Math.floor(result);
 };
-export {getRandomInteger};
+
+const getRandomArrayElement = (array) => array[getRandomInteger(0, array.length - 1)];
+
+const createIdGenerator = () => {
+  let lastGeneratedId = 0;
+  return () => {
+    lastGeneratedId += 1;
+    return lastGeneratedId;
+  };
+};
+
+export {getRandomInteger, createIdGenerator, getRandomArrayElement};

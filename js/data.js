@@ -1,7 +1,9 @@
-import {getRandomInteger} from './util.js';
+import {getRandomInteger, createIdGenerator, getRandomArrayElement} from './util.js';
 
 const COUNT_PHOTO = 25;
-const COMMENTS_MAX = 30;
+const AVATAR_COUNT = 6;
+const LIKE_MIN_COUNT = 15;
+const LIKE_MAX_COUNT = 200;
 
 const DESCRIPTIONS = [
   'Романтический закат',
@@ -33,27 +35,30 @@ const MESSAGES = ['Всё отлично!',
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
 ];
 
-const Likes = {
-  MIN:15,
-  MAX:200
-};
+const generateCommentId = createIdGenerator();
 
+const createMassege = () => Array.from(
+  { length: getRandomInteger(1, 2) },
+  () => getRandomArrayElement(MESSAGES),
+).join(' ');
 
-const addComments = () => ({
-  id: getRandomInteger(0, COUNT_PHOTO),
-  avatar: `img/avatar-${getRandomInteger(1, 6)}.svg`,
-  message: MESSAGES[getRandomInteger(0, MESSAGES.length -1)],
-  name: NAMES[getRandomInteger(0, NAMES.length - 1)]
+const createComment = () => ({
+  id: generateCommentId(),
+  avatar: `img/avatar-${getRandomInteger(1, AVATAR_COUNT)}.svg`,
+  message: createMassege(),
+  name: getRandomArrayElement(NAMES),
 });
 
-const addPhoto = () =>({
-  id: getRandomInteger(1, COUNT_PHOTO),
-  url: `photos/${getRandomInteger(1, COUNT_PHOTO)}.jpg`,
-  description: DESCRIPTIONS[getRandomInteger(0, DESCRIPTIONS.length - 1)],
-  likes: getRandomInteger(Likes.MIN, Likes.MAX),
-  comments: Array.from(getRandomInteger(0 , COMMENTS_MAX), addComments)
+const createPicture = (index) =>({
+  id: index,
+  url: `photos/${index}.jpg`,
+  description: getRandomArrayElement(DESCRIPTIONS),
+  likes: getRandomInteger(LIKE_MIN_COUNT, LIKE_MAX_COUNT),
+  comments: Array.from(getRandomInteger(0 , COUNT_PHOTO), createComment)
 });
 
-const getPhoto = () => Array.from({length: COUNT_PHOTO}, addPhoto);
+const getPhotos = () => Array.from({length: COUNT_PHOTO},
+  (_, pictureIndex) => createPicture(pictureIndex + 1),
+);
 
-export {getPhoto};
+export {getPhotos};
