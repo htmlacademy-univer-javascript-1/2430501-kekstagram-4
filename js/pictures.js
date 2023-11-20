@@ -1,5 +1,5 @@
 const pictures = document.querySelector('.pictures');
-const pictureTemplate = document.querySelector('#picture').content.querySelector('.pictures');
+const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
 const renderPhoto = (photo) => {
   const {url, description, comments, likes} = photo;
