@@ -1,8 +1,3 @@
-import {getRandomInteger} from './util.js';
-
-const COUNT_PHOTO = 25;
-const COMMENTS_MAX = 30;
-
 const DESCRIPTIONS = [
   'Романтический закат',
   'Отражение цветов',
@@ -15,7 +10,6 @@ const DESCRIPTIONS = [
   'Одинокий человек',
   'Встреча с природой'
 ];
-
 const NAMES = [
   'Анна',
   'Дмитрий',
@@ -33,27 +27,4 @@ const MESSAGES = ['Всё отлично!',
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
 ];
 
-const Likes = {
-  MIN:15,
-  MAX:200
-};
-
-
-const addComments = () => ({
-  id: getRandomInteger(0, COUNT_PHOTO),
-  avatar: `img/avatar-${getRandomInteger(1, 6)}.svg`,
-  message: MESSAGES[getRandomInteger(0, MESSAGES.length -1)],
-  name: NAMES[getRandomInteger(0, NAMES.length - 1)]
-});
-
-const addPhoto = () =>({
-  id: getRandomInteger(1, COUNT_PHOTO),
-  url: `photos/${getRandomInteger(1, COUNT_PHOTO)}.jpg`,
-  description: DESCRIPTIONS[getRandomInteger(0, DESCRIPTIONS.length - 1)],
-  likes: getRandomInteger(Likes.MIN, Likes.MAX),
-  comments: Array.from(getRandomInteger(0 , COMMENTS_MAX), addComments)
-});
-
-const getPhoto = () => Array.from({length: COUNT_PHOTO}, addPhoto);
-
-export {getPhoto};
+export {NAMES, DESCRIPTIONS, MESSAGES};
