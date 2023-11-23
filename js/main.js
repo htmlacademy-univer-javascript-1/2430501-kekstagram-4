@@ -1,6 +1,7 @@
 import { getObjects } from './createObjects.js';
-import { renderingThumbnails } from './renderingThumbnails.js';
-import { renderingBigPicture } from './renderingBigPicture.js';
+import { renderThumbnails } from './renderThumbnails.js';
+import { renderBigPicture } from './renderBigPicture.js';
+
 const objects = getObjects();
-renderingThumbnails(objects);
-renderingBigPicture(objects);
+renderThumbnails(objects);
+renderBigPicture(objects);
