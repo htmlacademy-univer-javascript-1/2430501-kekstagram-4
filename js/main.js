@@ -1,7 +1,6 @@
-import './data.js';
 import {PHOTOS_COUNT, createImage } from './data.js';
 import {createPictures} from './pictures.js';
-import './big-picture.js';
+import './effects.js';
 import './form.js';
 import './hashtag-pristine.js';
 
