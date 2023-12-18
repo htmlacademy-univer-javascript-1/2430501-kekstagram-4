@@ -1,4 +1,4 @@
-import { closeForm, onEscapeKeyDown } from './form.js';
+import { closeForm, onEscapeKeyDown } from './formUpload.js';
 import { isEscape } from './utils.js';
 
 const MESSAGE_Z_POSITION = 100;
@@ -7,13 +7,10 @@ const successTemplate = document.querySelector('#success').content.querySelector
 const successMessage = successTemplate.cloneNode(true);
 const errorTemplate = document.querySelector('#error').content.querySelector('.error');
 const errorMessage = errorTemplate.cloneNode(true);
-
 const checkElementTarget = (evt, button, inner) => evt.target.classList.contains(button) || !evt.target.classList.contains(inner);
-
 const closeMessage = (message = successMessage) => {
   message.classList.add('hidden');
 };
-
 const onSuccessClick = (evt) => {
   if (checkElementTarget(evt, 'success__button', 'success__inner')) {
     closeForm();
@@ -45,19 +42,18 @@ const onErrorClick = (evt) => {
 const appendMessage = (message) => {
   message.classList.add('hidden');
   message.style.zIndex = MESSAGE_Z_POSITION;
-
   document.body.appendChild(message);
-};
-
-const addPostMessages = () => {
-  appendMessage(successMessage);
-  appendMessage(errorMessage);
 };
 
 const showSuccessMessage = () => {
   successMessage.classList.remove('hidden');
 
   successMessage.addEventListener('click', onSuccessClick, {once: true});
+};
+
+const addPostMessages = () => {
+  appendMessage(successMessage);
+  appendMessage(errorMessage);
 };
 
 const showErrorMessage = () => {
@@ -68,5 +64,3 @@ const showErrorMessage = () => {
 
   errorMessage.addEventListener('click', onErrorClick, {once: true});
 };
-
-export{addPostMessages, showSuccessMessage, closeMessage, showErrorMessage};

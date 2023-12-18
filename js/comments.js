@@ -1,5 +1,3 @@
-import { declineByNumber } from './utils.js';
-
 const MAX_NEW_COMMENTS_COUNT = 5;
 
 const bigPicture = document.querySelector('.big-picture');
@@ -8,7 +6,7 @@ const commentsCountItem = bigPicture.querySelector('.social__comment-count');
 const pictureComments = bigPicture.querySelector('.social__comments');
 const commentChild = pictureComments.children[0];
 
-let maxCommentsMultiplyer = 1;
+let maxComments = 1;
 
 const getCommentItem = (comment) => {
   const newComment = commentChild.cloneNode(true);
@@ -25,7 +23,7 @@ const getCommentItem = (comment) => {
 };
 
 const addNewComments = () => {
-  const newCommentsCount = MAX_NEW_COMMENTS_COUNT * maxCommentsMultiplyer;
+  const newCommentsCount = MAX_NEW_COMMENTS_COUNT * maxComments;
   const commentsOverallCount = pictureComments.children.length;
   const addedCommentsCount = newCommentsCount >= commentsOverallCount ? commentsOverallCount : newCommentsCount;
 
@@ -42,8 +40,7 @@ const addNewComments = () => {
     loadingButton.classList.add('hidden');
   }
 
-  commentsCountItem.innerHTML = `${addedCommentsCount} из <span class="comments-count">${commentsOverallCount}</span>
-  ${declineByNumber(commentsOverallCount, 'комментарий', 'комментария', 'комментариев')}`;
+  commentsCountItem.innerHTML = `${addedCommentsCount} из <span class="comments-count">${commentsOverallCount}</span> комментариев`;
 };
 
 const setComments = (comments) => {
@@ -51,12 +48,12 @@ const setComments = (comments) => {
   comments.forEach((comment) => {
     pictureComments.appendChild(getCommentItem(comment));
   });
-  maxCommentsMultiplyer = 1;
+  maxComments = 1;
   addNewComments();
 };
 
 loadingButton.addEventListener('click', () => {
-  addNewComments(maxCommentsMultiplyer++);
+  addNewComments(maxComments++);
 });
 
-export { setComments, bigPicture };
+export { setComments };
