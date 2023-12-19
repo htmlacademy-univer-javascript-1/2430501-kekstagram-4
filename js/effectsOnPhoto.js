@@ -17,7 +17,6 @@ const sliderValue = uploadingOverlay.querySelector('.effect-level__value');
 const sliderItem = uploadingOverlay.querySelector('.effect-level__slider');
 const sliderField = uploadingOverlay.querySelector('.img-upload__effect-level');
 const effectsList = uploadingOverlay.querySelector('.effects__list');
-
 let currentEffect = '';
 
 noUiSlider.create(sliderItem, {
@@ -96,6 +95,7 @@ const setEffects = () => {
   currentEffect = 'effects__preview--none';
 
   uploadingPicture.style.filter = effects.none();
+
   effectsList.children[0].querySelector('input').checked = true;
 };
 
@@ -103,3 +103,4 @@ sliderItem.noUiSlider.on('change', onSliderChange);
 effectsList.addEventListener('click', onEffectsClick);
 
 export{setEffects};
+
