@@ -103,4 +103,3 @@ sliderItem.noUiSlider.on('change', onSliderChange);
 effectsList.addEventListener('click', onEffectsClick);
 
 export{setEffects};
-
